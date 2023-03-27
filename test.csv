@@ -1,0 +1,13 @@
+Profit/Expense	Date	Transaction Type	Num	Name	Memo/Description	Split	Amount	Balance
+Ordinary Income/Expenses								
+Income								
+Design income								
+	2023-03-12	Invoice	1038	Amy's Bird Sanctuary	Custom Design	Accounts Receivable (A/R)	75.00	75.00
+Total for Design income							75.00	
+Total for Income							75.00	
+Expenses								
+Automobile								
+	2023-01-13	Credit Card Expense				Mastercard	34.00	34.00
+Total for Automobile							34.00	
+Total for Expenses							34.00	
+Net Income							41.00	
