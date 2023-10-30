@@ -1,0 +1,15 @@
+base_token_url = "https://sandbox-quickbooks.api.intuit.com/oauth2/v1/tokens/bearer"
+token_class_url = Url(base_token_url)
+
+token_class_url.add("grant_type", "authorization_code")
+token_class_url.add("code", code)
+token_class_url.add("redirect_uri", redirect_uri)
+
+token_url = token_class_url.get()
+auth_header = f'{client_id}:{client_secret}'
+encoded_header = base64.b64encode(auth_header.encode('ascii'))
+headers = {
+    'Authorization': f"Basic {encoded_header.decode('ascii')}",
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Accept': 'application/json'
+}

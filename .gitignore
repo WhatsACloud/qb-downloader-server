@@ -130,3 +130,4 @@ dmypy.json
 
 # misc
 db.sqlite3
+config.yaml
