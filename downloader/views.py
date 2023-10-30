@@ -34,14 +34,15 @@ def index(request):
             'Authorization': f"Bearer {auth_client.access_token}",
             'Accept': 'application/json'
         }
-        # if not os.path.exists(temp_folder_name):
-        #     os.makedirs(temp_folder_name)
         if not os.path.exists(csv_folders):
             os.makedirs(csv_folders)
-        company_list[0].save_all_sheets(headers)
-        # auth_url = auth_client.get_authorization_url(scopes)
-        # webbrowser.open(auth_url)
-        # return HttpResponse()
+        cur_company = company_list.get_next()
+        if cur_company != None:
+            cur_company.save_all_sheets(headers, cur_company.name)
+            if not company_list.is_last():
+                auth_url = auth_client.get_authorization_url(scopes)
+                webbrowser.open(auth_url)
+                return HttpResponse()
         return save_as_zip()
 
 atexit.register(utils.exit_handler)

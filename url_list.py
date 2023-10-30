@@ -6,9 +6,6 @@ from converter import Converter
 
 converter = Converter()
 
-bs_folder = "/bs"
-pAndl_folder = "/pAndl"
-
 pAndL_sub_url = "ProfitAndLossDetail"
 bs_sub_url = "BalanceSheet"
 
@@ -53,7 +50,8 @@ class Company:
     1. Balance Sheet (BalanceSheet)
     2. Profit and loss (ProfitAndLossDetail)
     """
-    def __init__(self, company_id):
+    def __init__(self, name, company_id):
+        self.name = name
         self.company_id = company_id
         self.urls = {}
         self.urls["pAndL"] = self.new_url(pAndL_sub_url)
@@ -62,16 +60,31 @@ class Company:
     def new_url(self, sub_url):
         return f"{get_base_url()}/v3/company/{self.company_id}/reports/{sub_url}?minorversion=69"
 
-    def save_sheet(self, converter, url, headers, folder_name, base_filename, count):
+    def save_sheet(self, converter, url, headers, company_name, base_filename):
         response = requests.get(url, headers=headers)
         data = json.loads(response.content)
-        utils.convert_and_save(converter, data, f"{config.csv_folders}{folder_name}", f'{base_filename}{count}.csv')
+        utils.convert_and_save(converter, data, f"{config.csv_folders}/{company_name}", f'{base_filename}.csv')
 
-    def save_all_sheets(self, headers):
-        bs_count, pAndL_count = utils.get_current_count(config.temp_folder_name)
-        self.save_sheet(converter, self.urls["bs"], headers, bs_folder, "bs", bs_count)
-        self.save_sheet(converter, self.urls["pAndL"], headers, pAndl_folder, "pAndL", pAndL_count)
+    def save_all_sheets(self, headers, company_name):
+        self.save_sheet(converter, self.urls["bs"], headers, company_name, "bs")
+        self.save_sheet(converter, self.urls["pAndL"], headers, company_name, "pAndL")
 
-company_list = []
-for id in config.company_list:
-    company_list.append(Company(id))
+class CompanyList:
+    def __init__(self, company_list):
+        self.key_list = list(company_list.keys())
+        self.company_list = {x: Company(x, company_list[x]) for x in self.key_list}
+        self.current = 0
+    
+    def get_next(self):
+        if self.is_last():
+            return None
+        self.current += 1
+        key = self.key_list[self.current-1]
+        return self.company_list[key]
+
+    def is_last(self):
+        if self.current >= len(self.key_list):
+            return True
+        return False
+
+company_list = CompanyList(config.company_list)
