@@ -1,4 +1,4 @@
-import config
+import downloader.config as config
 from intuitlib.client import AuthClient
 
 # Instantiate client

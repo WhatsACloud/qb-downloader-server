@@ -12,8 +12,8 @@ def get_arr(obj):
 class Converter:
     def __init__(self):
         self.lelist = []
+    
     def search_for_rows(self, data):
-        print(data)
         if len(data["Rows"]) == 0:
             return self.lelist
         for row in data["Rows"]["Row"]:

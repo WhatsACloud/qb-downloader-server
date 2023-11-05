@@ -10,8 +10,7 @@ client_id = config['CLIENT_ID']
 client_secret = config['CLIENT_SECRET']
 redirect_uri = config['REDIRECT_URI']
 environment = config['ENVIRONMENT']
-
-company_list = config['company_id_list']
+debug = config['DEBUG']
 
 temp_folder_name = "/tmp/django_temp"
 csv_folders = temp_folder_name + "/csv_folders"

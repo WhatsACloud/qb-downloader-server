@@ -1,0 +1,22 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <title>success</title> 
+</head> 
+<body> 
+    <h1>Success</h1>
+    <div>
+        <h2>Saved companies:</h2>
+        {% for company in saved_companies_list %} 
+            <li>{{ company }}</li> 
+        {% endfor %}
+    </div>
+    <p>{{ msg }}</p>
+    <a href="{{ auth_url }}">Download data from another company</a>
+    <br>
+    <a href="{% url 'zipDownload' %}">Save all data</a>
+</body> 
+</html> 

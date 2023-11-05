@@ -42,3 +42,7 @@ python3 manage.py runserver
 ```
 deactivate
 ```
+
+# Useful tutorials
+
+Set up django application on CPanel - https://www.youtube.com/watch?v=h2w8oNw_W80
