@@ -34,14 +34,14 @@ def exit_handler():
     tmp_query.delete_tmp()
 
 def convert_and_save(converter, data, foldername, filename):
-    # csv_byte_str = converter.convert(data)
+    csv_byte_str = converter.convert(data)
     # json_obj = json.loads(data)
     if not os.path.exists(foldername):
         os.makedirs(foldername)
     with open(foldername + f'/{filename}', 'wb') as f:
-        # f.write(csv_byte_str)
-        formatted_str = json.dumps(data, indent=2)
-        f.write(str.encode(formatted_str))
+        f.write(csv_byte_str)
+        # formatted_str = json.dumps(data, indent=2)
+        # f.write(str.encode(formatted_str))
         f.close()
 
 def get_current_count(temp_folder_name):
