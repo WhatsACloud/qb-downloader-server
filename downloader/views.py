@@ -1,4 +1,7 @@
 # from django.http import HttpResponse
+import os
+os.environ['OPENBLAS_NUM_THREADS'] = '1'
+
 from downloader.config import temp_folder_name, csv_folders, scopes
 import downloader.error_logger as logger
 logger.setup()

@@ -46,3 +46,5 @@ deactivate
 # Useful tutorials
 
 Set up django application on CPanel - https://www.youtube.com/watch?v=h2w8oNw_W80
+error handling - https://intuitdeveloper.github.io/intuit-api-docs/docs/faq/error-handling/#see-all-gateway-errors
+API error codes intuit - https://developer.intuit.com/app/developer/qbo/docs/develop/troubleshooting/error-codes
