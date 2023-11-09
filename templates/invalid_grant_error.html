@@ -1,0 +1,17 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <title>error</title> 
+</head> 
+<body> 
+    <h1>ERROR:</h1>
+    <p>OAuth2 grant is invalid (likely due to Authorization code or refresh token expiring). Please relogin by following the link below to fix the error.</p>
+
+    <a href="{{ auth_url }}">relogin here</a>
+
+    <p>{{ contact_developer_msg }}</p>
+</body> 
+</html> 

@@ -8,8 +8,14 @@
 </head> 
 <body> 
     <h1>ERROR:</h1>
-    <p>{{ msg }}</p>
     <p> error: {{ error }}</p>
     <p> error description: {{ error_desc }}</p>
+    <h2>Possible courses of action to resolve the issue</h2>
+    {% for solution in solution_list %} 
+        <li>{{ solution }}</li> 
+    {% endfor %}
+
+    <p>{{ contact_developer_msg }}</p>
+    {% comment %} <p> intuit_tid (used for reporting API bugs in Intuit support centre): {{ intuit_tid }}</p> {% endcomment %}
 </body> 
 </html> 

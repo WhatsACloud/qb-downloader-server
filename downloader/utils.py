@@ -3,6 +3,23 @@ import shutil
 import downloader.tmp_query as tmp_query
 import json
 from django.http import HttpResponse
+from intuitlib.exceptions import AuthClientError
+
+def is_api_err(data: dict):
+    if type(data) != dict:
+        raise ValueError(f"data should be datatype 'dict', not datatype {type(data)}")
+    return "Fault" in data and "type" in data["Fault"]
+    # return data.get("Fault") and data["Fault"].get("Error") and data["Fault"]["Error"].get("type")
+
+def ami_invalid_grant_err(err: AuthClientError):
+    if err.status_code == 400:
+        try:
+            loaded_json = json.loads(err.content)
+            if loaded_json["error"] == "invalid_grant":
+                return True
+        except json.JSONDecodeError as _:
+            return False
+    return False
 
 def save_as_zip(zipfile_name, source_folder_location):
     response = None

@@ -75,7 +75,8 @@ class Company:
         self.name = data["QueryResponse"]["CompanyInfo"][0]["CompanyName"]
 
     def new_url(self, sub_url):
-        return f"{get_base_url()}/v3/company/{self.company_id}/reports/{sub_url}?minorversion=69"
+        return f"{get_base_url()}/v3/company/sjdfdsjf/reports/{sub_url}?minorversion=69"
+        # return f"{get_base_url()}/v3/company/{self.company_id}/reports/{sub_url}?minorversion=69"
 
     def save_sheet(self, converter, url, location, company_name, base_filename):
         data = self.get_res(url)
