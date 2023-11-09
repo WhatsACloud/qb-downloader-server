@@ -17,7 +17,6 @@ def get_err_msgs(err: AuthClientError):
     desc = ""
     try:
         loaded_json = json.loads(err.content)
-        print(loaded_json)
         error = f'API error (status_code: {err.status_code}): {loaded_json["error"]}'
         desc = loaded_json["error_description"]
     except json.JSONDecodeError as _:

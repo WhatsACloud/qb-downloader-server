@@ -57,12 +57,9 @@ def get_res(url, headers):
     for count in range(RES_LIMIT):
         # response = requests.get(url, {"false headers": "blah"})
         response = requests.get(url, headers=headers)
-        print(response.status_code, is_gateway_err(response.status_code))
         if not is_gateway_err(response.status_code):
             data = json.loads(response.content)
-            print(data)
             if utils.is_api_err(data):
-                print("OH NOT ERROR", data)
                 err = AuthClientError(response)
                 err.content = json.dumps({
                     "error": data["Fault"]["Error"][0]["Message"],
@@ -77,7 +74,6 @@ def get_res(url, headers):
             err = AuthClientError(response)
             err.content = get_msg(err.status_code)
             raise err
-    if get_error_code(data) > 0:
-        intuit_tid = get_intuit_tid(response.headers)
-        print("oh no! error!")
+    # if get_error_code(data) > 0:
+    #     intuit_tid = get_intuit_tid(response.headers)
     return data

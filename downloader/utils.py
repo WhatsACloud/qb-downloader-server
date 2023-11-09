@@ -28,7 +28,6 @@ def save_as_zip(zipfile_name, source_folder_location):
         response = HttpResponse(f.read(), content_type='application/zip')
         response['Content-Disposition'] = 'attachment; filename=totalzip.zip'
         f.close()
-        print("Finished!")
     return response
 
 def exit_handler():

@@ -1,4 +1,5 @@
 # from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 import os
 os.environ['OPENBLAS_NUM_THREADS'] = '1'
 
@@ -46,5 +47,9 @@ def index(request):
 
 def zipDownload(request):
     return utils.save_as_zip(f"{temp_folder_name}/totalzip", csv_folders)
+
+def launch(request):
+    auth_url = auth_client.client.get_authorization_url(scopes)
+    return HttpResponseRedirect(auth_url)
 
 atexit.register(utils.exit_handler)
